@@ -1,0 +1,33 @@
+#baseline for reading the RFID with RasberryPI
+import fake_rpi
+fake_rpi.toggle_print(True)
+
+import RPi.GPIO as GPIO
+
+class MockRFIDReader:
+    def read(self):
+        tag = input("Scan RFID (type ID): ")
+        return tag
+
+# Create an instance of the MFRC522 reader
+MIFAREReader = MFRC522.MFRC522()
+
+# Welcome message
+print("Looking for cards")
+
+# Loop for reading the card
+while True:
+    # Scan for cards
+    (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+    
+    # If a card is found
+    if status == MIFAREReader.MI_OK:
+        print("Card detected")
+        
+        # Get the UID of the card
+        (status, uid) = MIFAREReader.MFRC522_Anticoll()
+        
+        # If we have the UID, continue
+        if status == MIFAREReader.MI_OK:
+            # Print UID
+            print("Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3]))

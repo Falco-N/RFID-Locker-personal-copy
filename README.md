@@ -1,2 +1,2 @@
-# RFID-Locker-personal-copy
-group project with my code done parallel to main.
+# RFID-lokero
+Ohjelmistoja ja suunnitelmia RFID-tunnisteella avattavasta työkalu- ja tarvikelokerikosta
